@@ -1,0 +1,1303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4a267">
+  <title>Brightside English Club — Reading, Speaking &amp; Friendship</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #242b3a;
+      --muted: #657083;
+      --paper: #fffefa;
+      --blue: #dceefa;
+      --blue-deep: #99d7ef;
+      --orange: #f49a5f;
+      --orange-deep: #d76c37;
+      --pink: #f04f9c;
+      --green: #16876d;
+      --lavender: #eeeafd;
+      --line: #dce1e8;
+      --navy: #27334c;
+      --shadow: 0 12px 34px rgba(43, 56, 78, .10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: clamp(10px, 2.4vw, 30px);
+      color: var(--ink);
+      background: #f1f4f6;
+      font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+    }
+    button { font: inherit; }
+    .page {
+      max-width: 1380px;
+      min-height: calc(100vh - clamp(20px, 4.8vw, 60px));
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--paper);
+      border: 5px solid var(--orange);
+      box-shadow: 0 20px 55px rgba(38, 52, 73, .12);
+      position: relative;
+    }
+    .topbar {
+      min-height: 42px;
+      padding: 8px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      color: white;
+      background: var(--orange);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .brand { display: flex; align-items: center; gap: 9px; }
+    .brand-mark {
+      display: grid;
+      width: 25px;
+      height: 25px;
+      place-items: center;
+      color: var(--orange-deep);
+      background: #fff5df;
+      border-radius: 8px 8px 8px 2px;
+      font-size: 16px;
+    }
+    .top-meta { opacity: .9; font-size: 10px; letter-spacing: .08em; }
+    .top-links { display: flex; align-items: center; gap: 14px; }
+    .top-links a { color: white; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-decoration: none; opacity: .9; }
+    .top-links a[aria-current="page"] { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+    .top-links a:hover { opacity: 1; }
+    main { padding: clamp(22px, 4vw, 48px) clamp(18px, 4.8vw, 64px) 28px; }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 27px;
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--orange-deep);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(26px, 3.5vw, 43px);
+      line-height: 1.09;
+      letter-spacing: -.045em;
+    }
+    h1 .pink { color: var(--pink); }
+    .instruction {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: clamp(14px, 1.45vw, 17px);
+      line-height: 1.5;
+    }
+    .stamp {
+      width: 96px;
+      height: 96px;
+      display: grid;
+      align-content: center;
+      text-align: center;
+      transform: rotate(7deg);
+      color: var(--navy);
+      border: 2px dashed #94cde3;
+      border-radius: 50%;
+      background: #f1fbff;
+      flex: none;
+    }
+    .stamp strong { font-size: 28px; line-height: 1; }
+    .stamp span { margin-top: 5px; font-size: 9px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .reading-tools {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 17px 0 20px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .reading-label { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 0 16px; color: var(--navy); background: #eef5fb; border: 1px solid #d4e3ef; border-radius: 9px 9px 9px 3px; font-size: 13px; font-weight: 900; }
+    .reading-label span:first-child { font-size: 17px; }
+    .tool-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 0 18px;
+      color: #fff;
+      background: var(--navy);
+      border: 2px solid var(--navy);
+      border-radius: 9px 9px 9px 3px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .16s ease;
+    }
+    .tool-button:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #172035; }
+    .tool-button:active { transform: translateY(1px); box-shadow: none; }
+    .tool-button.secondary { color: var(--navy); background: #fff; }
+    .tool-button.secondary:hover { box-shadow: 0 5px 0 #dce1e8; }
+    .tool-button .icon { font-size: 17px; line-height: 1; }
+    .progress {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .progress strong { color: var(--navy); }
+    .message-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      opacity: 0;
+      transform: translateY(-5px);
+      visibility: hidden;
+      transition: opacity .25s ease, transform .25s ease, visibility .25s ease;
+    }
+    .message-panel.open { opacity: 1; transform: none; visibility: visible; margin: 18px 0 2px; }
+    .message {
+      min-width: 0;
+      padding: 15px 18px 17px;
+      border: 1px solid #d8e5ec;
+      border-radius: 12px;
+      background: #f8fcff;
+      box-shadow: 0 4px 0 #e7f2f7;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .message:nth-child(2) { background: #fffaf4; border-color: #f0dfd0; box-shadow: 0 4px 0 #f6eade; }
+    .message-head { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; font-family: "Trebuchet MS", Arial, sans-serif; }
+    .avatar { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: #62b9d3; font-size: 13px; font-weight: 900; }
+    .message:nth-child(2) .avatar { background: #ee9b69; }
+    .sender { font-size: 13px; font-weight: 900; }
+    .sender small { display: block; margin-top: 2px; color: #8892a0; font-size: 10px; font-weight: 700; }
+    .message p { margin: 0; }
+    .questions-head { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin: 25px 0 14px; }
+    .questions-head h2 { margin: 0; font-size: 17px; letter-spacing: -.02em; }
+    .questions-head span { color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .question-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 22px; }
+    .question {
+      position: relative;
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr) auto;
+      align-items: center;
+      min-height: 94px;
+      gap: 0;
+      padding: 14px 15px 14px 17px;
+      border-radius: 20px 20px 20px 9px;
+      background: var(--blue);
+      box-shadow: 0 6px 0 var(--blue-deep);
+      transition: transform .18s ease;
+    }
+    .question:nth-child(3n + 2) { background: #e5effd; box-shadow: 0 6px 0 #bdcbed; }
+    .q-number { align-self: start; padding-top: 2px; font-size: 19px; font-weight: 900; }
+    .statement { padding-right: 10px; font-size: clamp(14px, 1.55vw, 18px); line-height: 1.38; }
+    .choices { display: flex; gap: 5px; }
+    .choice {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      color: #69758a;
+      background: rgba(255,255,255,.83);
+      border: 1.5px solid #aab5c7;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .15s ease;
+    }
+    .choice:hover { border-color: var(--navy); transform: scale(1.07); }
+    .choice[aria-pressed="true"] { color: white; background: var(--navy); border-color: var(--navy); box-shadow: 0 2px 0 rgba(35,45,65,.2); }
+    .choice.solution { color: #116b55; background: #d3f2e4; border: 2px solid var(--green); }
+    .question.correct { background: #d9f2e8; box-shadow: 0 6px 0 #9bd7bd; }
+    .question.incorrect { background: #ffe2df; box-shadow: 0 6px 0 #f4aaa3; }
+    .question.reveal-correct { outline: 2px dashed var(--green); outline-offset: 3px; }
+    .question.reveal-wrong { outline: 2px dashed #dc655b; outline-offset: 3px; }
+    .result-mark { position: absolute; top: 7px; right: 9px; font-size: 12px; font-weight: 900; }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 23px;
+      padding-top: 19px;
+      border-top: 1px solid var(--line);
+    }
+    .check-button { color: #fff; background: var(--orange-deep); border-color: var(--orange-deep); }
+    .check-button:hover { box-shadow: 0 5px 0 #a84c28; }
+    .reset-button { color: var(--muted); background: transparent; border: 0; padding: 9px; font-size: 13px; font-weight: 800; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+    .score { margin-left: auto; color: var(--navy); font-size: 14px; font-weight: 900; }
+    .feedback { min-height: 19px; margin: 9px 0 0; color: var(--muted); font-size: 12px; }
+    #speaking-exercise { margin-top: 42px; padding-top: 38px; border-top: 2px dashed #dce1e8; }
+    .speaking-title { max-width: none; margin: 0; font-size: clamp(26px, 3.5vw, 39px); line-height: 1.1; letter-spacing: -.04em; }
+    .speaking-title span { color: var(--pink); }
+    .speaking-lead { max-width: 760px; margin: 12px 0 0; color: var(--muted); font-size: clamp(14px, 1.45vw, 17px); line-height: 1.55; }
+    .task-strip { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 23px 0 20px; padding: 15px 18px; border: 1px solid #f1d7c5; border-radius: 11px; background: #fff7ef; }
+    .task-strip strong { display: block; margin-bottom: 3px; font-size: 13px; }
+    .task-strip p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .task-icon { flex: none; font-size: 27px; }
+    .scene { padding: clamp(17px, 3vw, 28px); border: 1px solid #dce5eb; border-radius: 16px 16px 16px 5px; background: #f8fcff; }
+    .scene[hidden] { display: none; }
+    .family-scene { background: #fbf9ff; border-color: #e5e0f4; }
+    .scene-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; margin-bottom: 16px; }
+    .scene-head h3 { margin: 0; font-size: clamp(19px, 2.3vw, 25px); letter-spacing: -.025em; }
+    .scene-head p { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .scene-tag { flex: none; padding: 7px 10px; color: #27657d; background: #e1f3f8; border-radius: 20px; font-size: 10px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .family-scene .scene-tag { color: #665393; background: var(--lavender); }
+    .goals { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 19px; padding: 0; list-style: none; }
+    .goals li { padding: 6px 10px; color: #526174; background: white; border: 1px solid #e0e8ed; border-radius: 20px; font-size: 11px; font-weight: 800; }
+    .family-scene .goals li { border-color: #e8e2f3; }
+    .model-tools { display: flex; align-items: center; gap: 12px; padding: 16px 0; border-top: 1px solid #dce5eb; }
+    .family-scene .model-tools { border-color: #e5e0f4; }
+    .tool-note { color: var(--muted); font-size: 11px; line-height: 1.4; }
+    .dialogue { display: grid; grid-template-columns: 1fr 1fr; gap: 11px 22px; opacity: 0; transform: translateY(-5px); visibility: hidden; transition: opacity .25s ease, transform .25s ease, visibility .25s ease; }
+    .dialogue.open { opacity: 1; transform: none; visibility: visible; padding-top: 7px; }
+    .turn { display: flex; align-items: flex-start; gap: 9px; min-width: 0; }
+    .turn:nth-child(even) { flex-direction: row-reverse; }
+    .turn:nth-child(even) .bubble { border-radius: 14px 14px 4px 14px; background: var(--lavender); }
+    .speaking-exercise .avatar { display: grid; width: 31px; height: 31px; flex: none; place-items: center; color: #fff; background: #55a9c5; border-radius: 50%; font-size: 11px; font-weight: 900; }
+    .turn:nth-child(even) .avatar { background: #e68a61; }
+    .family-scene .avatar { background: #7869af; }
+    .family-scene .turn:nth-child(even) .avatar { background: #53a38b; }
+    .bubble { max-width: 100%; padding: 11px 13px; background: #e1f1f8; border-radius: 14px 14px 14px 4px; font-size: 13px; line-height: 1.52; }
+    .speaker { display: block; margin-bottom: 3px; color: #526174; font-size: 10px; font-weight: 900; letter-spacing: .04em; }
+    .family-scene .bubble { background: #efecfa; }
+    .family-scene .turn:nth-child(even) .bubble { background: #e4f2eb; }
+    #friendship-exercise { margin-top: 42px; padding-top: 38px; border-top: 2px dashed #dce1e8; }
+    .friendship-title { max-width: none; margin: 0; font-size: clamp(26px, 3.5vw, 39px); line-height: 1.1; letter-spacing: -.04em; }
+    .friendship-title span { color: #738d15; }
+    .friendship-lead { max-width: 760px; margin: 12px 0 21px; color: var(--muted); font-size: clamp(14px, 1.45vw, 17px); line-height: 1.55; }
+    .friendship-passage { padding: clamp(17px, 3vw, 27px); border: 1px solid #d7e28a; border-radius: 17px 17px 17px 5px; background: #f8fbe9; box-shadow: 0 5px 0 #e8efb9; }
+    .passage-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .passage-top strong { font-size: 12px; letter-spacing: .11em; text-transform: uppercase; }
+    .passage-top span { color: #78814f; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .passage-layout { display: grid; grid-template-columns: minmax(0, 1fr) 205px; gap: 24px; align-items: center; }
+    .passage-copy { font-family: Georgia, "Times New Roman", serif; font-size: 15px; line-height: 1.7; }
+    .passage-copy p { margin: 0 0 12px; }
+    .passage-copy p:last-child { margin-bottom: 0; }
+    .friendship-note { position: relative; padding: 17px; border: 1px solid #e0e9ad; border-radius: 55% 45% 45% 55% / 45% 45% 55% 55%; background: #fffef3; text-align: center; }
+    .friendship-note .note-icon { display: block; margin-bottom: 7px; color: #839d21; font-size: 25px; }
+    .friendship-note strong { display: block; margin-bottom: 5px; color: #56651b; font-size: 12px; }
+    .friendship-note p { margin: 0; color: #667047; font-size: 11px; line-height: 1.5; }
+    .friendship-exercises { display: grid; grid-template-columns: 1.08fr .92fr; gap: 18px; margin-top: 24px; align-items: start; }
+    .friendship-work { min-width: 0; padding: 19px; border: 1px solid #e0e4da; border-radius: 13px; background: #fff; }
+    .friendship-work h3 { margin: 0 0 15px; font-size: 15px; line-height: 1.35; }
+    .work-letter { display: inline-grid; width: 23px; height: 23px; margin-right: 6px; place-items: center; color: white; background: #839d21; border-radius: 6px 6px 6px 2px; font-size: 11px; }
+    .friendship-mcq { margin: 0 0 13px; padding: 0 0 12px; border: 0; border-bottom: 1px solid #edf0e7; }
+    .friendship-mcq:last-of-type { border-bottom: 0; }
+    .friendship-mcq legend { margin-bottom: 7px; padding: 0; font-size: 12px; font-weight: 800; line-height: 1.45; }
+    .mc-options { display: grid; gap: 5px; }
+    .mc-option { display: flex; align-items: flex-start; gap: 7px; padding: 6px 8px; border: 1px solid transparent; border-radius: 7px; color: #4b5565; font-size: 11px; line-height: 1.4; cursor: pointer; }
+    .mc-option input { flex: none; margin: 1px 0 0; accent-color: var(--navy); }
+    .mc-option:hover { background: #f5f8ef; }
+    .mc-option.solution { color: #116b55; background: #e7f5d7; border-color: #b9d786; }
+    .mc-option.wrong-choice { color: #a4453f; background: #fff0ed; border-color: #f1c2ba; }
+    .word-bank { margin: -5px 0 13px; padding: 8px 10px; color: #647139; background: #f7fae9; border-radius: 7px; font-size: 11px; line-height: 1.5; }
+    .blank-row { display: grid; grid-template-columns: minmax(0, 1fr) 120px; align-items: center; gap: 8px; margin: 0 0 12px; font-size: 11px; line-height: 1.5; }
+    .blank-row input { width: 100%; min-width: 0; padding: 7px 9px; color: var(--ink); background: #fff; border: 1px solid #cdd4c1; border-radius: 6px; font: inherit; }
+    .blank-row input:focus { border-color: #839d21; outline: 2px solid #dce9ac; }
+    .blank-row.correct input { border-color: #61ae87; background: #f0fbf5; }
+    .blank-row.incorrect input { border-color: #e19285; background: #fff5f3; }
+    .fill-key { grid-column: 1 / -1; color: #116b55; font-weight: 800; }
+    .friendship-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; padding-top: 14px; border-top: 1px solid #edf0e7; }
+    .friendship-check, .friendship-key, .friendship-reset { min-height: 36px; padding: 0 11px; border-radius: 7px; font-size: 11px; font-weight: 900; cursor: pointer; }
+    .friendship-check { color: white; background: #657a18; border: 1px solid #657a18; }
+    .friendship-key { color: #536719; background: white; border: 1px solid #cad694; }
+    .friendship-reset { color: var(--muted); background: transparent; border: 0; text-decoration: underline; text-underline-offset: 2px; }
+    .friendship-score { width: 100%; min-height: 17px; color: #526174; font-size: 11px; font-weight: 800; }
+    #extra-practice { margin-top: 42px; padding-top: 38px; border-top: 2px dashed #dce1e8; }
+    .extra-title { max-width: none; margin: 0; font-size: clamp(26px, 3.5vw, 39px); line-height: 1.1; letter-spacing: -.04em; }
+    .extra-title span { color: var(--pink); }
+    .extra-lead { max-width: 760px; margin: 12px 0 22px; color: var(--muted); font-size: clamp(14px, 1.45vw, 17px); line-height: 1.55; }
+    .extra-block { margin-top: 20px; padding: clamp(16px, 2.7vw, 25px); border: 1px solid #e4e7ec; border-radius: 15px; background: #fff; }
+    .extra-block-head { display: flex; align-items: center; gap: 11px; margin-bottom: 17px; }
+    .extra-block-number { display: grid; width: 30px; height: 30px; flex: none; place-items: center; color: #fff; background: var(--orange-deep); border-radius: 8px 8px 8px 2px; font-size: 13px; font-weight: 900; }
+    .extra-block-head h3 { margin: 0; font-size: clamp(16px, 2vw, 21px); }
+    .extra-block-head p { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
+    .profile-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .profile-card { min-width: 0; padding: 14px; border: 1px solid #dfe8ef; border-radius: 14px 14px 14px 4px; background: #f4faff; }
+    .profile-card:nth-child(2) { background: #fff7f1; border-color: #f1e0d3; }
+    .profile-card:nth-child(3) { background: #f8f7ff; border-color: #e5e0f3; }
+    .profile-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .profile-avatar { display: grid; width: 31px; height: 31px; flex: none; place-items: center; color: white; background: #5eabc3; border-radius: 50%; font-size: 11px; font-weight: 900; }
+    .profile-card:nth-child(2) .profile-avatar { background: #e49460; }
+    .profile-card:nth-child(3) .profile-avatar { background: #8c7abb; }
+    .profile-head strong { font-size: 12px; }
+    .profile-card blockquote { margin: 0; color: #384457; font-family: Georgia, "Times New Roman", serif; font-size: 12px; line-height: 1.55; }
+    .opinion-prompts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+    .opinion-row { display: grid; gap: 6px; color: #526174; font-size: 11px; font-weight: 800; }
+    .opinion-row input { width: 100%; min-width: 0; padding: 8px 9px; border: 1px solid #d8dee5; border-radius: 7px; font: inherit; font-weight: 500; }
+    .model-answer { grid-column: 1 / -1; color: #536719; font-size: 11px; font-weight: 700; line-height: 1.45; }
+    .model-answer[hidden] { display: none; }
+    .extra-subhead { margin: 20px 0 9px; font-size: 13px; }
+    .tf-list { display: grid; gap: 7px; }
+    .tf-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 9px 11px; background: #f6f8fa; border-radius: 8px; }
+    .tf-text { font-size: 12px; line-height: 1.4; }
+    .tf-buttons { display: flex; gap: 5px; }
+    .tf-choice { width: 33px; height: 33px; color: #566174; background: white; border: 1px solid #c9d1dc; border-radius: 50%; font-size: 11px; font-weight: 900; cursor: pointer; }
+    .tf-choice[aria-pressed="true"] { color: #fff; background: var(--navy); border-color: var(--navy); }
+    .tf-choice.key-answer { color: #116b55; background: #e7f5e8; border-color: #a9d7b8; }
+    .tf-row.correct { background: #edf8ef; }
+    .tf-row.incorrect { background: #fff0ed; }
+    .activity-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; }
+    .activity-check, .activity-key, .activity-reset { min-height: 36px; padding: 0 11px; border-radius: 7px; font-size: 11px; font-weight: 900; cursor: pointer; }
+    .activity-check { color: white; background: var(--navy); border: 1px solid var(--navy); }
+    .activity-key { color: var(--navy); background: white; border: 1px solid #cbd2df; }
+    .activity-reset { color: var(--muted); background: transparent; border: 0; text-decoration: underline; text-underline-offset: 2px; }
+    .activity-score { min-height: 17px; margin-top: 8px; color: #526174; font-size: 11px; font-weight: 800; }
+    .text-message { max-width: 760px; margin: 0 auto 18px; padding: 17px 19px; border: 1px solid #b8d8e3; border-radius: 18px 18px 18px 5px; background: #eaf7fb; box-shadow: 0 5px 0 #d3eaf0; font-family: Georgia, "Times New Roman", serif; font-size: 13px; line-height: 1.6; }
+    .text-message strong { display: block; margin-bottom: 5px; color: #286c82; font-family: "Trebuchet MS", Arial, sans-serif; font-size: 11px; }
+    .message-questions { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    .short-answer { display: grid; gap: 6px; align-content: start; color: #526174; font-size: 11px; font-weight: 800; }
+    .short-answer input { width: 100%; padding: 8px 9px; border: 1px solid #d8dee5; border-radius: 7px; font: inherit; font-weight: 500; }
+    .short-answer.correct input { border-color: #61ae87; background: #f0fbf5; }
+    .short-answer.incorrect input { border-color: #e19285; background: #fff5f3; }
+    .cloze-bank { margin: 0 0 12px; color: #647139; font-size: 11px; line-height: 1.6; }
+    .cloze-text { padding: 13px 15px; border: 1px solid #e3e6eb; border-radius: 10px; background: #fafbfc; font-family: Georgia, "Times New Roman", serif; font-size: 13px; line-height: 2.3; }
+    .cloze-text input { width: 105px; max-width: 35vw; padding: 4px 6px; border: 0; border-bottom: 1.5px solid #abb5c1; background: transparent; font: inherit; text-align: center; }
+    .cloze-text input.correct { border-color: #16876d; background: #edfaf3; }
+    .cloze-text input.incorrect { border-color: #d75d53; background: #fff0ed; }
+    .message-answer-key { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 13px; }
+    .message-answer-key[hidden] { display: none; }
+    .key-card { padding: 10px 12px; color: #526174; background: #f6f8fa; border-radius: 8px; font-size: 11px; line-height: 1.5; }
+    .key-card strong { color: var(--navy); }
+    .vocab-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; }
+    .vocab-terms, .vocab-definitions { display: grid; gap: 8px; align-content: start; }
+    .vocab-match { display: grid; grid-template-columns: minmax(90px, .6fr) minmax(0, 1fr); align-items: center; gap: 9px; font-size: 11px; }
+    .vocab-match strong { padding: 7px 10px; color: #46536b; background: #edf0f8; border-radius: 20px; }
+    .vocab-match select { width: 100%; min-width: 0; padding: 7px 8px; color: #4b5565; background: white; border: 1px solid #d6dce3; border-radius: 7px; font: inherit; }
+    .vocab-match.correct select { border-color: #61ae87; background: #f0fbf5; }
+    .vocab-match.incorrect select { border-color: #e19285; background: #fff5f3; }
+    .definition { padding: 8px 10px; background: #fff5ef; border-radius: 8px; color: #596273; font-size: 11px; line-height: 1.4; }
+    .prompt-writing { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 21px; }
+    .prompt-writing label { display: grid; gap: 6px; color: #526174; font-size: 11px; font-weight: 800; }
+    .prompt-writing textarea { width: 100%; min-height: 58px; resize: vertical; padding: 8px; border: 1px solid #d8dee5; border-radius: 7px; font: inherit; font-size: 12px; }
+    #unit-tests { margin-top: 44px; padding-top: 38px; border-top: 2px dashed #dce1e8; }
+    .unit-title { max-width: none; margin: 0; font-size: clamp(26px, 3.5vw, 39px); line-height: 1.1; letter-spacing: -.04em; }
+    .unit-title span { color: var(--pink); }
+    .unit-lead { max-width: 760px; margin: 12px 0 23px; color: var(--muted); font-size: clamp(14px, 1.45vw, 17px); line-height: 1.55; }
+    .unit-test { margin: 20px 0; padding: clamp(16px, 2.8vw, 25px); border: 1px solid #e4e7ec; border-radius: 15px; background: #fff; }
+    .unit-test:nth-child(odd) { background: #fffaf6; border-color: #f0dfd2; }
+    .unit-test-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 17px; }
+    .unit-number { display: grid; width: 31px; height: 31px; flex: none; place-items: center; color: white; background: var(--orange-deep); border-radius: 8px 8px 8px 2px; font-size: 13px; font-weight: 900; }
+    .unit-test h3 { margin: 0; font-size: clamp(16px, 2vw, 21px); }
+    .unit-test-head p { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+    .unit-item { margin-top: 15px; padding-top: 13px; border-top: 1px solid #edf0f3; }
+    .unit-dialogue { max-width: 700px; margin: 0 auto 18px; padding: 15px 18px; border: 1px solid #b9d9e4; border-radius: 15px 15px 15px 4px; background: #eaf7fb; font-family: Georgia, "Times New Roman", serif; font-size: 13px; line-height: 1.65; }
+    .unit-dialogue p { margin: 0 0 7px; }
+    .unit-dialogue p:last-child { margin-bottom: 0; }
+    .unit-dialogue strong { color: #286c82; font-family: "Trebuchet MS", Arial, sans-serif; font-size: 11px; }
+    .unit-question { margin: 14px 0 0; font-size: 12px; font-weight: 900; }
+    .unit-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 12px; margin-top: 9px; }
+    .unit-option { display: flex; align-items: flex-start; gap: 7px; padding: 7px 9px; border: 1px solid transparent; border-radius: 7px; color: #4b5565; font-size: 11px; line-height: 1.4; cursor: pointer; }
+    .unit-option:hover { background: #f5f8fa; }
+    .unit-option input { margin: 1px 0 0; accent-color: var(--navy); }
+    .unit-option.solution { color: #116b55; background: #e7f5e8; border-color: #a9d7b8; }
+    .unit-option.wrong-choice { color: #a4453f; background: #fff0ed; border-color: #f1c2ba; }
+    .unit-score { min-height: 17px; margin-top: 12px; color: #526174; font-size: 11px; font-weight: 800; }
+    .unit-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; padding-top: 14px; border-top: 1px solid #edf0f3; }
+    .unit-controls button { min-height: 36px; padding: 0 12px; border-radius: 7px; font-size: 11px; font-weight: 900; cursor: pointer; }
+    .unit-check { color: #fff; background: var(--navy); border: 1px solid var(--navy); }
+    .unit-key { color: var(--navy); background: #fff; border: 1px solid #cbd2df; }
+    .unit-reset { color: var(--muted); background: transparent; border: 0; text-decoration: underline; text-underline-offset: 2px; }
+    .unit-two-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .statement-card { padding: 14px; border-radius: 11px; background: #f6f8fa; }
+    .statement-card h4 { margin: 0 0 10px; font-size: 13px; }
+    .roman-list { display: grid; gap: 6px; margin: 0; padding-left: 24px; color: #4b5565; font-size: 11px; line-height: 1.45; }
+    .unit-match { display: grid; grid-template-columns: minmax(0, 1fr) 86px; gap: 8px; align-items: center; margin-top: 8px; color: #4b5565; font-size: 11px; }
+    .unit-match select { width: 100%; padding: 6px; border: 1px solid #d6dce3; border-radius: 6px; font: inherit; }
+    .unit-match.correct select { border-color: #61ae87; background: #f0fbf5; }
+    .unit-match.incorrect select { border-color: #e19285; background: #fff5f3; }
+    .extra-vocab-sentences .unit-match { grid-template-columns: minmax(0, 1fr) minmax(150px, .45fr); }
+    .match-key { grid-column: 1 / -1; color: #116b55; font-size: 10px; font-weight: 800; }
+    .match-key[hidden] { display: none; }
+    .unit-three-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+    .mini-scenario { padding: 14px; border-radius: 11px; background: #f8f7ff; border: 1px solid #e5e0f3; font-size: 12px; line-height: 1.55; }
+    .mini-scenario strong { display: block; margin-bottom: 6px; color: #665393; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .open-response { display: grid; gap: 7px; color: #526174; font-size: 11px; font-weight: 800; }
+    .open-response textarea { width: 100%; min-height: 80px; resize: vertical; padding: 9px; border: 1px solid #d8dee5; border-radius: 7px; font: inherit; font-size: 12px; }
+    footer { display: flex; justify-content: space-between; gap: 14px; padding: 8px clamp(18px, 4.8vw, 64px) 17px; color: #8c95a2; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    :focus-visible { outline: 3px solid #1d8aad; outline-offset: 3px; }
+    .skip-link { position: absolute; z-index: 20; top: -60px; left: 14px; padding: 10px 14px; color: #fff; background: var(--navy); border-radius: 7px; font-weight: 800; }
+    .skip-link:focus { top: 12px; }
+    #reading-exercise, #speaking-exercise, #friendship-exercise, #extra-practice, #unit-tests { scroll-margin-top: 16px; }
+    button, a, select { touch-action: manipulation; }
+    @media (max-width: 760px) {
+      body { padding: 0; background: var(--paper); }
+      .page { min-height: 100vh; border-width: 4px; }
+      .topbar { padding-inline: 14px; }
+      .topbar { flex-wrap: wrap; }
+      .top-links { gap: 10px; }
+      main { padding: 25px 19px 20px; }
+      .intro { grid-template-columns: 1fr; }
+      .stamp { display: none; }
+      .question-grid { grid-template-columns: 1fr; gap: 12px; }
+      .question { min-height: 82px; }
+      .message-panel { grid-template-columns: 1fr; }
+      .progress { width: 100%; margin: 1px 0 0; }
+      .actions { flex-wrap: wrap; }
+      .score { width: 100%; margin: 0; }
+      .passage-layout { grid-template-columns: 1fr; }
+      .friendship-note { border-radius: 14px; }
+      .friendship-exercises { grid-template-columns: 1fr; }
+      .unit-two-grid, .unit-three-grid { grid-template-columns: 1fr; }
+      .unit-options { grid-template-columns: 1fr; }
+      .vocab-grid { grid-template-columns: 1fr; }
+      .extra-vocab-sentences .unit-match { grid-template-columns: 1fr; }
+      .profile-grid, .opinion-prompts, .message-questions { grid-template-columns: 1fr; }
+      footer { padding-inline: 19px; }
+    }
+    @media (max-width: 390px) {
+      .question { grid-template-columns: 26px minmax(0, 1fr) auto; padding-inline: 11px; }
+      .choice { width: 33px; height: 33px; }
+      .statement { font-size: 14px; }
+      .tool-button { padding-inline: 13px; }
+      .blank-row { grid-template-columns: 1fr; gap: 4px; }
+      .message-questions, .profile-grid, .opinion-prompts { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to exercises</a>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">✉</span><span>Brightside English Club</span></div>
+      <nav class="top-links" aria-label="Exercises">
+        <a href="#reading-exercise">Reading</a>
+        <a href="#speaking-exercise">Speaking</a>
+        <a href="#friendship-exercise">Friendship</a>
+        <a href="#extra-practice">More practice</a>
+        <a href="#unit-tests">Unit tests</a>
+      </nav>
+    </header>
+    <main id="main-content" tabindex="-1">
+      <section class="intro" id="reading-exercise" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Weekend plans · Reading check</p>
+          <h1 id="page-title">Read the messages. Choose <span class="pink">True</span> or <span class="pink">False</span>.</h1>
+          <p class="instruction">Ava and Leo are making plans. Read carefully, then mark each sentence.</p>
+        </div>
+        <div class="stamp" aria-label="Six questions"><strong>06</strong><span>quick checks</span></div>
+      </section>
+
+      <section class="reading-tools" aria-label="Reading controls">
+        <div class="reading-label"><span aria-hidden="true">▤</span><span>Read the emails</span></div>
+        <button class="tool-button secondary" id="toggle-answers" type="button" aria-pressed="false">
+          <span class="icon" aria-hidden="true">✦</span><span>Show answers</span>
+        </button>
+        <div class="progress" aria-live="polite"><strong id="answered-count">0</strong> of 6 answered</div>
+      </section>
+
+      <section class="message-panel open" id="messages" aria-label="Email conversation between Ava and Leo">
+        <article class="message">
+          <div class="message-head"><span class="avatar" aria-hidden="true">A</span><div class="sender">Ava<small>to Leo · Friday, 4:18 pm</small></div></div>
+          <p>Hi Leo! Are you free this Saturday? My cousin and I are going to the City Science Museum. We want to see the new space exhibition. Meet us at the main entrance at 10:30 a.m. I’ve booked your ticket, so you don’t need to buy one. After the exhibition, let’s have lunch in the museum café.</p>
+        </article>
+        <article class="message">
+          <div class="message-head"><span class="avatar" aria-hidden="true">L</span><div class="sender">Leo<small>to Ava · Friday, 4:26 pm</small></div></div>
+          <p>That sounds great! I’ll bring my sketchbook. My brother has a football match that morning, so he can’t come with us. Lunch at the museum café sounds good, too. Let’s take the number 6 bus home at about 3 p.m.</p>
+        </article>
+      </section>
+
+      <div class="questions-head"><h2>What did you learn?</h2><span>Tap T or F for each line</span></div>
+      <section class="question-grid" id="question-grid" aria-label="True or false questions"></section>
+
+      <section class="actions" aria-label="Exercise actions">
+        <button class="tool-button check-button" id="check-answers" type="button">Check my answers <span aria-hidden="true">→</span></button>
+        <button class="reset-button" id="reset" type="button">Start over</button>
+        <div class="score" id="score" aria-live="polite"></div>
+      </section>
+      <p class="feedback" id="feedback" role="status"></p>
+
+      <section id="speaking-exercise" aria-labelledby="speaking-title">
+        <p class="eyebrow">Speaking · Pair work</p>
+        <h2 class="speaking-title" id="speaking-title">Make plans. Ask questions. <span>Explain why.</span></h2>
+        <p class="speaking-lead">Choose a situation and act it out with a partner. First, use the prompts to make your own conversation. Then open the sample dialogue and compare.</p>
+
+        <aside class="task-strip" aria-label="Speaking instructions">
+          <div><strong>Your speaking mission</strong><p>Ask about plans, give a reason, suggest another idea, and agree on what to do next. Try to speak from memory—not just read.</p></div>
+          <span class="task-icon" aria-hidden="true">☏</span>
+        </aside>
+
+        <section class="scene" id="friends-scene">
+          <div class="scene-head">
+            <div><h3>Can we go to the skate park?</h3><p>Jamie wants to meet after school. Rowan has a family responsibility, so they find another time that works.</p></div>
+            <span class="scene-tag">Friends · Making plans</span>
+          </div>
+          <ul class="goals" aria-label="Conversation goals">
+            <li>Ask if someone is free</li><li>Explain why you can’t go</li><li>Suggest a different day</li><li>Agree on a time and place</li>
+          </ul>
+          <div class="model-tools"><span class="scene-tag">Sample dialogue · always visible</span><span class="tool-note">Take the roles of Jamie and Rowan. Try changing a detail and practise again.</span></div>
+          <div class="dialogue open" id="friends-dialogue" aria-label="Sample conversation between friends">
+            <div class="turn"><span class="avatar" aria-hidden="true">J</span><div class="bubble"><span class="speaker">Jamie</span>Hey, are you free after school on Thursday? I was thinking we could check out the new skate park.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">R</span><div class="bubble"><span class="speaker">Rowan</span>I’d like to, but I have to pick up my little sister from art club. My mum is working late.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">J</span><div class="bubble"><span class="speaker">Jamie</span>Oh, right. Does she finish late? Maybe I could come with you and we can go after.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">R</span><div class="bubble"><span class="speaker">Rowan</span>She finishes at five, and it takes us a while to get home. We probably wouldn’t reach the park before it closes.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">J</span><div class="bubble"><span class="speaker">Jamie</span>No problem. How about Friday instead? Are you doing anything then?</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">R</span><div class="bubble"><span class="speaker">Rowan</span>I have basketball practice, but it ends at half past three. I should be home by four.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">J</span><div class="bubble"><span class="speaker">Jamie</span>That works. Shall we meet outside the library at quarter past four? It’s on the way to the park.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">R</span><div class="bubble"><span class="speaker">Rowan</span>Sure. I need to return a book anyway. Do you mind if we invite Layla too?</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">J</span><div class="bubble"><span class="speaker">Jamie</span>Not at all. I’ll message her. What should we bring?</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">R</span><div class="bubble"><span class="speaker">Rowan</span>Our helmets and some water. They don’t let you skate without a helmet.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">J</span><div class="bubble"><span class="speaker">Jamie</span>Good point. I have an extra helmet if you need one. I’ll bring it just in case.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">R</span><div class="bubble"><span class="speaker">Rowan</span>Thanks! So, Friday at 4:15 by the library. Text me if anything changes.</div></div>
+          </div>
+        </section>
+
+        <section class="scene family-scene" id="family-scene">
+          <div class="scene-head">
+            <div><h3>Can we visit Grandma later?</h3><p>Lina’s Sunday rehearsal changes the family plan. She and her dad work out a new time and what to bring.</p></div>
+            <span class="scene-tag">Family · Changing a plan</span>
+          </div>
+          <ul class="goals" aria-label="Conversation goals">
+            <li>Ask about the family plan</li><li>Explain a problem</li><li>Ask for a change</li><li>Make a new arrangement</li>
+          </ul>
+          <div class="model-tools"><span class="scene-tag">Sample dialogue · always visible</span><span class="tool-note">Take the roles of Lina and Dad. Practise asking politely and explaining your reason.</span></div>
+          <div class="dialogue open" id="family-dialogue" aria-label="Sample conversation between family members">
+            <div class="turn"><span class="avatar" aria-hidden="true">L</span><div class="bubble"><span class="speaker">Lina</span>Dad, are we still going to visit Grandma on Sunday? I want to check what time we’re leaving.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">D</span><div class="bubble"><span class="speaker">Dad</span>Yes, we planned to have lunch with her. Why do you ask?</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">L</span><div class="bubble"><span class="speaker">Lina</span>My band rehearsal was moved to Sunday morning. It starts at nine, and I might not finish until noon.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">D</span><div class="bubble"><span class="speaker">Dad</span>I thought the rehearsal was on Saturday. Why did they change it?</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">L</span><div class="bubble"><span class="speaker">Lina</span>Our music teacher needs us to practise for Thursday’s concert. Could we visit Grandma in the afternoon instead?</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">D</span><div class="bubble"><span class="speaker">Dad</span>That should be fine. Your sister Maya has swimming in the morning, too. What time does her lesson end?</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">L</span><div class="bubble"><span class="speaker">Lina</span>At one o’clock. If we leave after that, we can all go together. Grandma usually has lunch early, though.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">D</span><div class="bubble"><span class="speaker">Dad</span>Let’s call her and ask if half past two is okay. Would you call her? She’ll be happy to hear from you.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">L</span><div class="bubble"><span class="speaker">Lina</span>Sure. She also asked me to bring the old photo album. Should I pack it now?</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">D</span><div class="bubble"><span class="speaker">Dad</span>Yes, please. I’ll bring the lemon cake she likes. We should stop at the shop, too—she said she’s run out of tea.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">L</span><div class="bubble"><span class="speaker">Lina</span>I’ll add tea to the shopping list. What time should I be ready?</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">D</span><div class="bubble"><span class="speaker">Dad</span>Let’s pick Maya up from swimming at 1:15 and head straight to Grandma’s. If your rehearsal runs late, just text me and we’ll leave a little later.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">L</span><div class="bubble"><span class="speaker">Lina</span>Okay, I’ll call Grandma now and tell Maya about the plan. Thanks for changing the time.</div></div>
+            <div class="turn"><span class="avatar" aria-hidden="true">D</span><div class="bubble"><span class="speaker">Dad</span>You’re welcome. I’m glad you told me early. We’ll make it work.</div></div>
+          </div>
+        </section>
+      </section>
+      <section id="friendship-exercise" aria-labelledby="friendship-title">
+        <p class="eyebrow">Reading · Alternative practice</p>
+        <h2 class="friendship-title" id="friendship-title">Friendship grows through <span>everyday choices.</span></h2>
+        <p class="friendship-lead">Read the passage about trust, respect, and making room for differences. Then try both activities.</p>
+
+        <article class="friendship-passage" aria-labelledby="passage-heading">
+          <div class="passage-top"><strong id="passage-heading">A little about friendship</strong><span>Reading passage · about 140 words</span></div>
+          <div class="passage-layout">
+            <div class="passage-copy">
+              <p>Friendship is more than having fun together. It grows through small, everyday actions. Good friends listen when someone needs to talk, keep their promises, and make room for each other’s ideas. They do not have to enjoy all the same things. One friend might love team sports while another would rather draw. Respecting these differences helps both people feel comfortable being themselves.</p>
+              <p>Friends sometimes disagree or make mistakes. A strong friendship does not mean never arguing; it means speaking honestly, trying to understand, and saying sorry when needed. Trust takes time to build, so friends protect it by keeping private things private and being reliable. They also need space for family, school, and other interests. Giving each other that space can make their time together even better. Friendship works best when both people share care, respect, and support.</p>
+            </div>
+            <aside class="friendship-note"><span class="note-icon" aria-hidden="true">✿</span><strong>A thought to keep</strong><p>Good friends don’t have to be alike. They listen, respect differences, and show up for each other.</p></aside>
+          </div>
+        </article>
+
+        <div class="friendship-exercises">
+          <section class="friendship-work" aria-labelledby="friendship-quiz-title">
+            <h3 id="friendship-quiz-title"><span class="work-letter">A</span>Circle the correct answer.</h3>
+            <fieldset class="friendship-mcq" data-answer="b">
+              <legend>1. What helps friends feel comfortable being themselves?</legend>
+              <div class="mc-options">
+                <label class="mc-option"><input type="radio" name="friend-q1" value="a"> Enjoying exactly the same activities</label>
+                <label class="mc-option"><input type="radio" name="friend-q1" value="b"> Respecting each other’s differences</label>
+                <label class="mc-option"><input type="radio" name="friend-q1" value="c"> Spending every day together</label>
+              </div>
+            </fieldset>
+            <fieldset class="friendship-mcq" data-answer="a">
+              <legend>2. What can friends do after a disagreement?</legend>
+              <div class="mc-options">
+                <label class="mc-option"><input type="radio" name="friend-q2" value="a"> Talk honestly and try to understand</label>
+                <label class="mc-option"><input type="radio" name="friend-q2" value="b"> Pretend nothing happened</label>
+                <label class="mc-option"><input type="radio" name="friend-q2" value="c"> Stop sharing their ideas</label>
+              </div>
+            </fieldset>
+            <fieldset class="friendship-mcq" data-answer="c">
+              <legend>3. How can friends protect trust?</legend>
+              <div class="mc-options">
+                <label class="mc-option"><input type="radio" name="friend-q3" value="a"> By agreeing about everything</label>
+                <label class="mc-option"><input type="radio" name="friend-q3" value="b"> By keeping their friends busy</label>
+                <label class="mc-option"><input type="radio" name="friend-q3" value="c"> By keeping private things private</label>
+              </div>
+            </fieldset>
+            <fieldset class="friendship-mcq" data-answer="b">
+              <legend>4. Why do friends need space sometimes?</legend>
+              <div class="mc-options">
+                <label class="mc-option"><input type="radio" name="friend-q4" value="a"> So they can avoid helping each other</label>
+                <label class="mc-option"><input type="radio" name="friend-q4" value="b"> So they can enjoy family, school, and other interests</label>
+                <label class="mc-option"><input type="radio" name="friend-q4" value="c"> So they never have to make plans</label>
+              </div>
+            </fieldset>
+          </section>
+
+          <section class="friendship-work" aria-labelledby="friendship-words-title">
+            <h3 id="friendship-words-title"><span class="work-letter">B</span>Complete the sentences.</h3>
+            <p class="word-bank"><strong>Word bank:</strong> space · promises · trust · respect</p>
+            <label class="blank-row"><span>1. Good friends keep their …</span><input type="text" name="friendship-blank-1" data-answer="promises" aria-label="Answer to sentence 1" autocomplete="off"><span class="fill-key" hidden></span></label>
+            <label class="blank-row"><span>2. Friends show … for each other’s differences.</span><input type="text" name="friendship-blank-2" data-answer="respect" aria-label="Answer to sentence 2" autocomplete="off"><span class="fill-key" hidden></span></label>
+            <label class="blank-row"><span>3. Keeping private things private helps protect …</span><input type="text" name="friendship-blank-3" data-answer="trust" aria-label="Answer to sentence 3" autocomplete="off"><span class="fill-key" hidden></span></label>
+            <label class="blank-row"><span>4. Friends give each other … for other interests.</span><input type="text" name="friendship-blank-4" data-answer="space" aria-label="Answer to sentence 4" autocomplete="off"><span class="fill-key" hidden></span></label>
+          </section>
+        </div>
+        <div class="friendship-actions" aria-label="Friendship activity controls">
+          <button class="friendship-check" id="friendship-check" type="button">Check my work</button>
+          <button class="friendship-key" id="friendship-key" type="button" aria-pressed="false">Show answers</button>
+          <button class="friendship-reset" id="friendship-reset" type="button">Start again</button>
+          <div class="friendship-score" id="friendship-score" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+      <section id="extra-practice" aria-labelledby="extra-title">
+        <p class="eyebrow">Friendship · Extra practice</p>
+        <h2 class="extra-title" id="extra-title">More ways to practise <span>friendship.</span></h2>
+        <p class="extra-lead">Read three short friend profiles, a message about missing a party, and practise useful friendship vocabulary.</p>
+
+        <article class="extra-block" id="friend-profiles">
+          <div class="extra-block-head"><span class="extra-block-number">A</span><div><h3>Read what three students say about their friends.</h3><p>Write each person’s opinion, then decide if the sentences are true or false.</p></div></div>
+          <div class="profile-grid">
+            <article class="profile-card"><div class="profile-head"><span class="profile-avatar">M</span><strong>Mira</strong></div><blockquote>“My cousin Sude is also my closest friend. She listens when I’m worried and always encourages me before a test. We both love baking, even though we like different music.”</blockquote></article>
+            <article class="profile-card"><div class="profile-head"><span class="profile-avatar">O</span><strong>Owen</strong></div><blockquote>“I met Arda in robotics club. We have different hobbies, but I can count on him to be honest and help me when a project gets difficult.”</blockquote></article>
+            <article class="profile-card"><div class="profile-head"><span class="profile-avatar">E</span><strong>Ella</strong></div><blockquote>“Ben was the first person who spoke to me when I changed schools. We both like cycling. If I’m having a hard day, he checks in and makes me laugh.”</blockquote></article>
+          </div>
+          <h4 class="extra-subhead">1. Write their opinions about a good friend.</h4>
+          <div class="opinion-prompts">
+            <label class="opinion-row">Mira thinks a good friend …<input type="text" name="mira-opinion" autocomplete="off" placeholder="A good friend listens and …"><span class="model-answer" hidden>Sample: listens and encourages you.</span></label>
+            <label class="opinion-row">Owen thinks a good friend …<input type="text" name="owen-opinion" autocomplete="off" placeholder="A good friend is …"><span class="model-answer" hidden>Sample: is honest and helpful.</span></label>
+            <label class="opinion-row">Ella thinks a good friend …<input type="text" name="ella-opinion" autocomplete="off" placeholder="A good friend checks …"><span class="model-answer" hidden>Sample: checks in and cheers you up.</span></label>
+          </div>
+          <div class="activity-controls"><button class="activity-key" type="button" data-model-toggle aria-pressed="false">Show sample ideas</button></div>
+          <h4 class="extra-subhead">2. Are the sentences true or false?</h4>
+          <div class="tf-list extra-tf-task" data-total="5">
+              <div class="tf-row" data-answer="true"><span class="tf-text">Mira and Sude are cousins.</span><div class="tf-buttons" role="group" aria-label="Choose true or false"><button class="tf-choice" type="button" data-value="true" aria-label="True">T</button><button class="tf-choice" type="button" data-value="false" aria-label="False">F</button></div></div>
+              <div class="tf-row" data-answer="true"><span class="tf-text">Owen met Arda in robotics club.</span><div class="tf-buttons" role="group" aria-label="Choose true or false"><button class="tf-choice" type="button" data-value="true" aria-label="True">T</button><button class="tf-choice" type="button" data-value="false" aria-label="False">F</button></div></div>
+              <div class="tf-row" data-answer="false"><span class="tf-text">Owen and Arda have exactly the same hobbies.</span><div class="tf-buttons" role="group" aria-label="Choose true or false"><button class="tf-choice" type="button" data-value="true" aria-label="True">T</button><button class="tf-choice" type="button" data-value="false" aria-label="False">F</button></div></div>
+              <div class="tf-row" data-answer="true"><span class="tf-text">Ben was the first person to speak to Ella at her new school.</span><div class="tf-buttons" role="group" aria-label="Choose true or false"><button class="tf-choice" type="button" data-value="true" aria-label="True">T</button><button class="tf-choice" type="button" data-value="false" aria-label="False">F</button></div></div>
+              <div class="tf-row" data-answer="true"><span class="tf-text">Ella and Ben both enjoy cycling.</span><div class="tf-buttons" role="group" aria-label="Choose true or false"><button class="tf-choice" type="button" data-value="true" aria-label="True">T</button><button class="tf-choice" type="button" data-value="false" aria-label="False">F</button></div></div>
+          </div>
+          <div class="activity-controls"><button class="activity-check" type="button">Check true / false</button><button class="activity-key" type="button" data-answer-toggle>Show answers</button><button class="activity-reset" type="button">Reset</button></div>
+          <div class="activity-score" role="status" aria-live="polite"></div>
+        </article>
+
+        <article class="extra-block" id="apology-message">
+          <div class="extra-block-head"><span class="extra-block-number">B</span><div><h3>Read Priya’s message to Noor.</h3><p>Then answer the questions and complete Noor’s reply.</p></div></div>
+          <div class="text-message"><strong>Hi Noor,</strong>Thanks for inviting me to your birthday picnic. I’m sorry, but I can’t come on Saturday. My little brother has a fever and Mum is at work, so I promised to stay with him. I hope he feels better soon. Please save me a piece of cake! Could we meet on Monday after school? I have a present for you. Have a lovely time!<br><br><strong>Priya</strong></div>
+          <h4 class="extra-subhead">1. Choose True or False.</h4>
+          <div class="tf-list extra-tf-task" data-total="4">
+              <div class="tf-row" data-answer="true"><span class="tf-text">Noor invited Priya to a birthday picnic.</span><div class="tf-buttons" role="group" aria-label="Choose true or false"><button class="tf-choice" type="button" data-value="true" aria-label="True">T</button><button class="tf-choice" type="button" data-value="false" aria-label="False">F</button></div></div>
+              <div class="tf-row" data-answer="true"><span class="tf-text">Priya’s little brother is ill.</span><div class="tf-buttons" role="group" aria-label="Choose true or false"><button class="tf-choice" type="button" data-value="true" aria-label="True">T</button><button class="tf-choice" type="button" data-value="false" aria-label="False">F</button></div></div>
+              <div class="tf-row" data-answer="false"><span class="tf-text">Priya says she will bring a cake to the picnic.</span><div class="tf-buttons" role="group" aria-label="Choose true or false"><button class="tf-choice" type="button" data-value="true" aria-label="True">T</button><button class="tf-choice" type="button" data-value="false" aria-label="False">F</button></div></div>
+              <div class="tf-row" data-answer="true"><span class="tf-text">Priya suggests meeting Noor on Monday after school.</span><div class="tf-buttons" role="group" aria-label="Choose true or false"><button class="tf-choice" type="button" data-value="true" aria-label="True">T</button><button class="tf-choice" type="button" data-value="false" aria-label="False">F</button></div></div>
+          </div>
+          <h4 class="extra-subhead">2. Answer the questions.</h4>
+          <div class="message-questions">
+            <label class="short-answer" data-answers="little brother|younger brother|priya's brother|her brother"><span>Who has a fever?</span><input type="text" name="fever-answer" autocomplete="off" placeholder="Type a short answer…"><span class="model-answer" hidden>Priya’s little brother.</span></label>
+            <label class="short-answer" data-answers="monday|mon."><span>When can Priya meet Noor?</span><input type="text" name="meeting-answer" autocomplete="off" placeholder="Type a day and time…"><span class="model-answer" hidden>Monday after school.</span></label>
+          </div>
+          <label class="short-answer" style="margin-top:10px" data-answers="look after|care for|stay with|her brother is ill|brother has a fever|brother is sick"><span>Why can’t Priya go to the picnic?</span><input type="text" name="picnic-reason" autocomplete="off" placeholder="Explain the reason…"><span class="model-answer" hidden>Her brother is ill, and she needs to stay with him while Mum is at work.</span></label>
+          <h4 class="extra-subhead">3. Complete Noor’s reply. One word is extra.</h4>
+          <p class="cloze-bank"><strong>Words:</strong> pictures · Monday · sorry · worry · football · better</p>
+          <div class="cloze-text extra-cloze">Hi Priya,<br>I’m so <input name="reply-blank-1" autocomplete="off" data-answer="sorry" aria-label="Cloze answer 1"> about your brother. I hope he feels <input name="reply-blank-2" autocomplete="off" data-answer="better" aria-label="Cloze answer 2"> soon. Don’t <input name="reply-blank-3" autocomplete="off" data-answer="worry" aria-label="Cloze answer 3"> about the picnic—we’ll take lots of <input name="reply-blank-4" autocomplete="off" data-answer="pictures" aria-label="Cloze answer 4">. Let’s meet on <input name="reply-blank-5" autocomplete="off" data-answer="Monday" aria-label="Cloze answer 5"> after school!<br>Noor</div>
+          <div class="message-answer-key" hidden>
+            <div class="key-card"><strong>Who?</strong> Priya’s little brother.</div>
+            <div class="key-card"><strong>When?</strong> Monday after school.</div>
+            <div class="key-card"><strong>Why?</strong> Her brother is ill and she needs to stay with him.</div>
+            <div class="key-card"><strong>Reply:</strong> sorry · better · worry · pictures · Monday</div>
+          </div>
+          <div class="activity-controls"><button class="activity-check" type="button">Check this activity</button><button class="activity-key" type="button" data-answer-toggle>Show answers</button><button class="activity-reset" type="button">Reset</button></div>
+          <div class="activity-score" role="status" aria-live="polite"></div>
+          <div class="mini-scenario" style="margin-top:17px"><strong>Your turn</strong>Choose one idea—going to the cinema, having a pizza party, or visiting a museum. Write a short invitation and a reply. If you say no, give a real reason and suggest another time.</div>
+          <div class="prompt-writing">
+            <label>My invitation<textarea name="my-invitation" autocomplete="off" placeholder="Would you like to …? Are you free …?"></textarea></label>
+            <label>My reply<textarea name="my-reply" autocomplete="off" placeholder="Thanks for asking. I … because … How about …?"></textarea></label>
+          </div>
+        </article>
+
+        <article class="extra-block" id="vocabulary-practice">
+          <div class="extra-block-head"><span class="extra-block-number">C</span><div><h3>Friendship vocabulary</h3><p>Match 12 expressions to their meanings. One definition is extra.</p></div></div>
+          <div class="vocab-grid extra-vocab-task">
+            <div class="vocab-terms">
+              <label class="vocab-match" data-answer="F"><strong>come over</strong><select name="meaning-come-over" aria-label="Meaning of come over"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="E"><strong>cool</strong><select name="meaning-cool" aria-label="Meaning of cool"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="H"><strong>count on</strong><select name="meaning-count-on" aria-label="Meaning of count on"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="C"><strong>buddy</strong><select name="meaning-buddy" aria-label="Meaning of buddy"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="A"><strong>stuffed</strong><select name="meaning-stuffed" aria-label="Meaning of stuffed"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="G"><strong>laid-back</strong><select name="meaning-laid-back" aria-label="Meaning of laid-back"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="B"><strong>support</strong><select name="meaning-support" aria-label="Meaning of support"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="K"><strong>get along</strong><select name="meaning-get-along" aria-label="Meaning of get along"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="M"><strong>keep in touch</strong><select name="meaning-keep-in-touch" aria-label="Meaning of keep in touch"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="I"><strong>cheerful</strong><select name="meaning-cheerful" aria-label="Meaning of cheerful"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="L"><strong>thoughtful</strong><select name="meaning-thoughtful" aria-label="Meaning of thoughtful"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+              <label class="vocab-match" data-answer="J"><strong>make up</strong><select name="meaning-make-up" aria-label="Meaning of make up"><option value="">Choose</option><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option><option value="F">F</option><option value="G">G</option><option value="H">H</option></select></label>
+            </div>
+            <div class="vocab-definitions">
+              <div class="definition"><strong>A.</strong> full after eating</div>
+              <div class="definition"><strong>B.</strong> give help or encouragement</div>
+              <div class="definition"><strong>C.</strong> a friend (informal)</div>
+              <div class="definition"><strong>D.</strong> feel worried about a problem (extra)</div>
+              <div class="definition"><strong>E.</strong> very good or fashionable</div>
+              <div class="definition"><strong>F.</strong> visit someone at their home</div>
+              <div class="definition"><strong>G.</strong> relaxed and easy-going</div>
+              <div class="definition"><strong>H.</strong> trust someone to help or do something</div>
+              <div class="definition"><strong>I.</strong> happy and positive</div>
+              <div class="definition"><strong>J.</strong> become friendly again after an argument</div>
+              <div class="definition"><strong>K.</strong> have a friendly relationship</div>
+              <div class="definition"><strong>L.</strong> kind and considerate of other people</div>
+              <div class="definition"><strong>M.</strong> continue communicating with someone</div>
+            </div>
+          </div>
+          <h4 class="extra-subhead">Complete the sentences with an expression from the list.</h4>
+          <p class="word-bank">support · stuffed · come over · laid-back · cool · count on · buddy · <strong>one expression is extra</strong></p>
+          <div class="extra-vocab-sentences">
+            <label class="unit-match" data-answer="come over"><span>1. My friend invited me to her house. I can … after school.</span><select name="vocab-sentence-1" aria-label="Complete sentence 1"><option value="">Choose an expression</option><option>cool</option><option>count on</option><option>buddy</option><option>come over</option><option>support</option><option>stuffed</option><option>laid-back</option></select></label>
+            <label class="unit-match" data-answer="count on"><span>2. He always keeps his promises, so I can … him.</span><select name="vocab-sentence-2" aria-label="Complete sentence 2"><option value="">Choose an expression</option><option>buddy</option><option>count on</option><option>laid-back</option><option>come over</option><option>support</option><option>cool</option><option>stuffed</option></select></label>
+            <label class="unit-match" data-answer="buddy"><span>3. My football … is practising with me today.</span><select name="vocab-sentence-3" aria-label="Complete sentence 3"><option value="">Choose an expression</option><option>cool</option><option>come over</option><option>laid-back</option><option>support</option><option>buddy</option><option>stuffed</option><option>count on</option></select></label>
+            <label class="unit-match" data-answer="laid-back"><span>4. Jo stays calm and … even before a big test.</span><select name="vocab-sentence-4" aria-label="Complete sentence 4"><option value="">Choose an expression</option><option>count on</option><option>support</option><option>laid-back</option><option>stuffed</option><option>cool</option><option>buddy</option><option>come over</option></select></label>
+            <label class="unit-match" data-answer="support"><span>5. My friends … me when I’m learning something new.</span><select name="vocab-sentence-5" aria-label="Complete sentence 5"><option value="">Choose an expression</option><option>buddy</option><option>cool</option><option>come over</option><option>stuffed</option><option>count on</option><option>support</option><option>laid-back</option></select></label>
+            <label class="unit-match" data-answer="stuffed"><span>6. I ate a huge lunch, so now I feel …</span><select name="vocab-sentence-6" aria-label="Complete sentence 6"><option value="">Choose an expression</option><option>stuffed</option><option>laid-back</option><option>cool</option><option>buddy</option><option>support</option><option>count on</option><option>come over</option></select></label>
+          </div>
+          <div class="activity-controls"><button class="activity-check" type="button">Check vocabulary</button><button class="activity-key" type="button" data-answer-toggle>Show answers</button><button class="activity-reset" type="button">Reset</button></div>
+          <div class="activity-score" role="status" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section id="unit-tests" aria-labelledby="unit-tests-title">
+        <p class="eyebrow">Review · Assessment</p>
+        <h2 class="unit-title" id="unit-tests-title">Three <span>unit tests.</span></h2>
+        <p class="unit-lead">Review the language from the page. Read each situation carefully and choose the best answer.</p>
+
+        <article class="unit-test" data-unit="1">
+          <div class="unit-test-head"><span class="unit-number">1</span><div><h3>Invitations and plans</h3><p>Read the conversation and answer all four questions.</p></div></div>
+          <div class="unit-dialogue">
+            <p><strong>Kate:</strong> I made a chocolate cake. Would you like to come over tonight?</p>
+            <p><strong>Emma:</strong> Thanks, I’d love to, but I’m visiting my aunt this evening.</p>
+            <p><strong>Kate:</strong> No worries. Are you free tomorrow after school? We could have a snack at the café.</p>
+            <p><strong>Emma:</strong> Yes, that works. Can we meet around four? My art club finishes at 3:30.</p>
+            <p><strong>Kate:</strong> Sure. Should we invite Sam?</p>
+            <p><strong>Emma:</strong> Good idea. I’ll text him now.</p>
+          </div>
+          <div class="unit-item" data-answer="c"><p class="unit-question">1. What did Kate make?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit1q1" value="a"> A) A fruit salad</label><label class="unit-option"><input type="radio" name="unit1q1" value="b"> B) A sandwich</label><label class="unit-option"><input type="radio" name="unit1q1" value="c"> C) A chocolate cake</label><label class="unit-option"><input type="radio" name="unit1q1" value="d"> D) A pizza</label></div></div>
+          <div class="unit-item" data-answer="a"><p class="unit-question">2. Why can’t Emma come over tonight?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit1q2" value="a"> A) She is visiting her aunt.</label><label class="unit-option"><input type="radio" name="unit1q2" value="b"> B) Her art club ends late.</label><label class="unit-option"><input type="radio" name="unit1q2" value="c"> C) She has to finish homework.</label><label class="unit-option"><input type="radio" name="unit1q2" value="d"> D) She doesn’t want any cake.</label></div></div>
+          <div class="unit-item" data-answer="d"><p class="unit-question">3. When and where do they plan to meet?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit1q3" value="a"> A) Tonight at Kate’s house</label><label class="unit-option"><input type="radio" name="unit1q3" value="b"> B) Tomorrow at the library</label><label class="unit-option"><input type="radio" name="unit1q3" value="c"> C) Tomorrow at three in the park</label><label class="unit-option"><input type="radio" name="unit1q3" value="d"> D) Tomorrow around four at the café</label></div></div>
+          <div class="unit-item" data-answer="b"><p class="unit-question">4. What does Emma say she will do?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit1q4" value="a"> A) Bake another cake</label><label class="unit-option"><input type="radio" name="unit1q4" value="b"> B) Text Sam</label><label class="unit-option"><input type="radio" name="unit1q4" value="c"> C) Cancel her art club</label><label class="unit-option"><input type="radio" name="unit1q4" value="d"> D) Visit Kate’s aunt</label></div></div>
+          <div class="unit-score" role="status" aria-live="polite"></div>
+          <div class="unit-controls"><button class="unit-check" type="button">Check test</button><button class="unit-key" type="button" aria-pressed="false">Show answers</button><button class="unit-reset" type="button">Reset</button></div>
+        </article>
+
+        <article class="unit-test" data-unit="2">
+          <div class="unit-test-head"><span class="unit-number">2</span><div><h3>Friendship and character</h3><p>Choose the answer that best matches each short text.</p></div></div>
+          <div class="statement-card"><h4>Good friends …</h4><ol class="roman-list" type="I"><li>support each other.</li><li>keep private things private.</li><li>enjoy exactly the same activities.</li><li>respect differences.</li></ol></div>
+          <div class="unit-item" data-answer="c"><p class="unit-question">1. Which statement is NOT suitable?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit2q1" value="a"> A) I</label><label class="unit-option"><input type="radio" name="unit2q1" value="b"> B) II</label><label class="unit-option"><input type="radio" name="unit2q1" value="c"> C) III</label><label class="unit-option"><input type="radio" name="unit2q1" value="d"> D) IV</label></div></div>
+          <div class="unit-dialogue"><p><strong>Rina:</strong> “My friend Sol is easy to depend on. She remembers what she promises and helps me when I’m nervous. We like different music, but we always listen to each other.”</p></div>
+          <div class="unit-item" data-answer="a"><p class="unit-question">2. Which adjective best describes Sol?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit2q2" value="a"> A) Reliable</label><label class="unit-option"><input type="radio" name="unit2q2" value="b"> B) Careless</label><label class="unit-option"><input type="radio" name="unit2q2" value="c"> C) Selfish</label><label class="unit-option"><input type="radio" name="unit2q2" value="d"> D) Unfriendly</label></div></div>
+          <div class="unit-item" data-answer="b"><p class="unit-question">3. What do Rina and Sol do when their interests are different?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit2q3" value="a"> A) They stop being friends.</label><label class="unit-option"><input type="radio" name="unit2q3" value="b"> B) They listen to each other.</label><label class="unit-option"><input type="radio" name="unit2q3" value="c"> C) They hide their interests.</label><label class="unit-option"><input type="radio" name="unit2q3" value="d"> D) They argue about music every day.</label></div></div>
+          <div class="unit-item" data-answer="d"><p class="unit-question">4. Which action helps build trust?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit2q4" value="a"> A) Telling everyone a friend’s secret</label><label class="unit-option"><input type="radio" name="unit2q4" value="b"> B) Making promises and forgetting them</label><label class="unit-option"><input type="radio" name="unit2q4" value="c"> C) Expecting friends to share every hobby</label><label class="unit-option"><input type="radio" name="unit2q4" value="d"> D) Keeping your word and listening</label></div></div>
+          <div class="unit-score" role="status" aria-live="polite"></div>
+          <div class="unit-controls"><button class="unit-check" type="button">Check test</button><button class="unit-key" type="button" aria-pressed="false">Show answers</button><button class="unit-reset" type="button">Reset</button></div>
+        </article>
+
+        <article class="unit-test" data-unit="3">
+          <div class="unit-test-head"><span class="unit-number">3</span><div><h3>Messages and details</h3><p>Read Ben’s message, then answer all four questions.</p></div></div>
+          <div class="unit-dialogue"><p><strong>Hi Maya,</strong></p><p>Thanks for inviting me to the class picnic tomorrow. I’m sorry, but I can’t come because I promised to help my grandpa in his garden. Could we visit the science museum next Sunday instead? I’ll bring the map I told you about. Have fun tomorrow!</p><p><strong>Ben</strong></p></div>
+          <div class="unit-item" data-answer="a"><p class="unit-question">1. Why can’t Ben come to the picnic?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit3q1" value="a"> A) He promised to help his grandpa.</label><label class="unit-option"><input type="radio" name="unit3q1" value="b"> B) He is visiting a museum tomorrow.</label><label class="unit-option"><input type="radio" name="unit3q1" value="c"> C) He has a music lesson.</label><label class="unit-option"><input type="radio" name="unit3q1" value="d"> D) He forgot about the invitation.</label></div></div>
+          <div class="unit-item" data-answer="c"><p class="unit-question">2. What did Maya invite Ben to?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit3q2" value="a"> A) A football match</label><label class="unit-option"><input type="radio" name="unit3q2" value="b"> B) A birthday dinner</label><label class="unit-option"><input type="radio" name="unit3q2" value="c"> C) A class picnic</label><label class="unit-option"><input type="radio" name="unit3q2" value="d"> D) A school concert</label></div></div>
+          <div class="unit-item" data-answer="b"><p class="unit-question">3. What does Ben suggest doing next Sunday?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit3q3" value="a"> A) Going to his grandpa’s house</label><label class="unit-option"><input type="radio" name="unit3q3" value="b"> B) Visiting the science museum</label><label class="unit-option"><input type="radio" name="unit3q3" value="c"> C) Having another picnic</label><label class="unit-option"><input type="radio" name="unit3q3" value="d"> D) Studying together</label></div></div>
+          <div class="unit-item" data-answer="d"><p class="unit-question">4. What will Ben bring?</p><div class="unit-options"><label class="unit-option"><input type="radio" name="unit3q4" value="a"> A) A cake</label><label class="unit-option"><input type="radio" name="unit3q4" value="b"> B) A football</label><label class="unit-option"><input type="radio" name="unit3q4" value="c"> C) A camera</label><label class="unit-option"><input type="radio" name="unit3q4" value="d"> D) A map</label></div></div>
+          <div class="open-response"><label for="unit3-response">Bonus: Write a polite invitation to a friend.</label><textarea id="unit3-response" name="unit3-invitation" autocomplete="off" placeholder="Would you like to …? Are you free …?"></textarea></div>
+          <div class="unit-score" role="status" aria-live="polite"></div>
+          <div class="unit-controls"><button class="unit-check" type="button">Check test</button><button class="unit-key" type="button" aria-pressed="false">Show answers</button><button class="unit-reset" type="button">Reset</button></div>
+        </article>
+      </section>
+    </main>
+    <footer><span>Brightside · English practice</span><span>Read · Speak · Review ✦</span></footer>
+  </div>
+  <script>
+    const questions = [
+      { text: 'Ava and her cousin are visiting the science museum on Saturday.', answer: true },
+      { text: 'Leo should meet Ava at the museum at ten o’clock.', answer: false },
+      { text: 'Ava has already booked Leo’s ticket.', answer: true },
+      { text: 'Leo’s brother is going to the museum with them.', answer: false },
+      { text: 'They plan to eat lunch at the museum café.', answer: true },
+      { text: 'They will take the number 6 bus home at about three.', answer: true }
+    ];
+    const grid = document.querySelector('#question-grid');
+    const selected = Array(questions.length).fill(null);
+    let checked = false;
+    let showingAnswers = false;
+
+    questions.forEach((item, index) => {
+      const card = document.createElement('article');
+      card.className = 'question';
+      card.dataset.index = index;
+      card.innerHTML = `
+        <span class="q-number">${index + 1}.</span>
+        <span class="statement">${item.text}</span>
+        <div class="choices" role="group" aria-label="Question ${index + 1}: choose true or false">
+          <button class="choice" type="button" data-value="true" aria-pressed="false" aria-label="True">T</button>
+          <button class="choice" type="button" data-value="false" aria-pressed="false" aria-label="False">F</button>
+        </div>`;
+      card.querySelectorAll('.choice').forEach(button => {
+        button.addEventListener('click', () => {
+          selected[index] = button.dataset.value === 'true';
+          card.querySelectorAll('.choice').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+          document.querySelector('#answered-count').textContent = selected.filter(value => value !== null).length;
+          if (checked) grade();
+        });
+      });
+      grid.append(card);
+    });
+
+    function grade() {
+      let correct = 0;
+      document.querySelectorAll('.question').forEach((card, index) => {
+        card.classList.remove('correct', 'incorrect', 'reveal-correct', 'reveal-wrong');
+        card.querySelector('.result-mark')?.remove();
+        card.querySelectorAll('.choice').forEach(button => {
+          button.classList.remove('solution');
+          if (showingAnswers && (button.dataset.value === 'true') === questions[index].answer) button.classList.add('solution');
+        });
+        if (selected[index] !== null) {
+          const isCorrect = selected[index] === questions[index].answer;
+          if (isCorrect) correct++;
+          card.classList.add(isCorrect ? 'correct' : 'incorrect');
+          const mark = document.createElement('span');
+          mark.className = 'result-mark';
+          mark.textContent = isCorrect ? '✓' : '×';
+          card.append(mark);
+        }
+        if (showingAnswers && selected[index] !== null) card.classList.add(selected[index] === questions[index].answer ? 'reveal-correct' : 'reveal-wrong');
+      });
+      const answered = selected.filter(value => value !== null).length;
+      const score = document.querySelector('#score');
+      score.textContent = answered ? `${correct} / ${answered} correct` : '';
+      document.querySelector('#feedback').textContent = answered < questions.length ? `You’ve answered ${answered} of 6. Finish the rest to get your full score.` : correct === 6 ? 'Perfect score! You caught every detail.' : 'Nice work. Change an answer and check again, or reveal the answer key.';
+    }
+
+    document.querySelector('#check-answers').addEventListener('click', () => { checked = true; grade(); });
+    document.querySelector('#toggle-answers').addEventListener('click', event => {
+      showingAnswers = !showingAnswers;
+      event.currentTarget.setAttribute('aria-pressed', String(showingAnswers));
+      event.currentTarget.querySelector('span:last-child').textContent = showingAnswers ? 'Hide answers' : 'Show answers';
+      checked = true;
+      grade();
+    });
+    document.querySelector('#reset').addEventListener('click', () => {
+      selected.fill(null);
+      checked = false;
+      showingAnswers = false;
+      document.querySelectorAll('.question').forEach(card => {
+        card.classList.remove('correct', 'incorrect', 'reveal-correct', 'reveal-wrong');
+        card.querySelectorAll('.choice').forEach(button => {
+          button.setAttribute('aria-pressed', 'false');
+          button.classList.remove('solution');
+        });
+        card.querySelector('.result-mark')?.remove();
+      });
+      document.querySelector('#answered-count').textContent = '0';
+      document.querySelector('#score').textContent = '';
+      document.querySelector('#feedback').textContent = '';
+      const keyButton = document.querySelector('#toggle-answers');
+      keyButton.setAttribute('aria-pressed', 'false');
+      keyButton.querySelector('span:last-child').textContent = 'Show answers';
+    });
+  </script>
+  <script>
+    const friendshipRoot = document.querySelector('#friendship-exercise');
+    const friendshipQuestions = [...friendshipRoot.querySelectorAll('.friendship-mcq')];
+    const friendshipBlanks = [...friendshipRoot.querySelectorAll('.blank-row')];
+    let friendshipChecked = false;
+    let friendshipShowingAnswers = false;
+
+    function gradeFriendship() {
+      let correct = 0;
+      let answered = 0;
+
+      friendshipQuestions.forEach(question => {
+        question.classList.remove('correct', 'incorrect');
+        const selectedOption = question.querySelector('input:checked');
+        const correctAnswer = question.dataset.answer;
+        question.querySelectorAll('.mc-option').forEach(option => option.classList.remove('solution', 'wrong-choice'));
+
+        if (friendshipShowingAnswers) {
+          question.querySelectorAll('.mc-option').forEach(option => {
+            if (option.querySelector('input').value === correctAnswer) option.classList.add('solution');
+          });
+        }
+        if (selectedOption) {
+          answered++;
+          const isCorrect = selectedOption.value === correctAnswer;
+          if (isCorrect) correct++;
+          question.classList.add(isCorrect ? 'correct' : 'incorrect');
+          if (!isCorrect) selectedOption.closest('.mc-option').classList.add('wrong-choice');
+        }
+      });
+
+      friendshipBlanks.forEach(row => {
+        row.classList.remove('correct', 'incorrect');
+        const input = row.querySelector('input');
+        const expected = input.dataset.answer;
+        const value = input.value.trim().toLocaleLowerCase();
+        const key = row.querySelector('.fill-key');
+        key.textContent = `Answer: ${expected}`;
+        key.hidden = !friendshipShowingAnswers;
+
+        if (value) {
+          answered++;
+          const isCorrect = value === expected;
+          if (isCorrect) correct++;
+          row.classList.add(isCorrect ? 'correct' : 'incorrect');
+        }
+      });
+
+      const score = friendshipRoot.querySelector('#friendship-score');
+      if (friendshipChecked && answered) {
+        const remaining = 8 - answered;
+        score.textContent = remaining ? `${correct} of ${answered} answered correctly · ${remaining} unanswered` : `${correct} / 8 correct`;
+      } else if (friendshipChecked) {
+        score.textContent = 'Try the questions, then check your work.';
+      } else {
+        score.textContent = '';
+      }
+    }
+
+    friendshipQuestions.forEach(question => question.addEventListener('change', () => {
+      if (friendshipChecked) gradeFriendship();
+    }));
+    friendshipBlanks.forEach(row => row.querySelector('input').addEventListener('input', () => {
+      if (friendshipChecked) gradeFriendship();
+    }));
+
+    friendshipRoot.querySelector('#friendship-check').addEventListener('click', () => {
+      friendshipChecked = true;
+      gradeFriendship();
+    });
+    friendshipRoot.querySelector('#friendship-key').addEventListener('click', event => {
+      friendshipShowingAnswers = !friendshipShowingAnswers;
+      event.currentTarget.setAttribute('aria-pressed', String(friendshipShowingAnswers));
+      event.currentTarget.textContent = friendshipShowingAnswers ? 'Hide answers' : 'Show answers';
+      gradeFriendship();
+    });
+    friendshipRoot.querySelector('#friendship-reset').addEventListener('click', () => {
+      friendshipChecked = false;
+      friendshipShowingAnswers = false;
+      friendshipQuestions.forEach(question => {
+        question.classList.remove('correct', 'incorrect');
+        question.querySelectorAll('input').forEach(input => { input.checked = false; });
+        question.querySelectorAll('.mc-option').forEach(option => option.classList.remove('solution', 'wrong-choice'));
+      });
+      friendshipBlanks.forEach(row => {
+        row.classList.remove('correct', 'incorrect');
+        row.querySelector('input').value = '';
+        row.querySelector('.fill-key').hidden = true;
+      });
+      friendshipRoot.querySelector('#friendship-score').textContent = '';
+      const keyButton = friendshipRoot.querySelector('#friendship-key');
+      keyButton.setAttribute('aria-pressed', 'false');
+      keyButton.textContent = 'Show answers';
+    });
+  </script>
+  <script>
+    document.querySelectorAll('.unit-test').forEach(test => {
+      const items = [...test.querySelectorAll('.unit-item')];
+      items.forEach((item, index) => {
+        const prompt = item.querySelector('.unit-question');
+        const options = item.querySelector('.unit-options');
+        prompt.id ||= `unit-${test.dataset.unit}-question-${index + 1}`;
+        options.setAttribute('role', 'radiogroup');
+        options.setAttribute('aria-labelledby', prompt.id);
+      });
+      const check = test.querySelector('.unit-check');
+      const key = test.querySelector('.unit-key');
+      const score = test.querySelector('.unit-score');
+      let checked = false;
+      let showing = false;
+
+      function gradeUnit() {
+        let correct = 0;
+        let answered = 0;
+        items.forEach(item => {
+          const answer = item.dataset.answer;
+          const selected = item.querySelector('input[type="radio"]:checked');
+          item.querySelectorAll('.unit-option').forEach(option => {
+            option.classList.remove('solution', 'wrong-choice');
+            if (showing && option.querySelector('input').value === answer) option.classList.add('solution');
+          });
+          if (selected) {
+            answered++;
+            const isCorrect = selected.value === answer;
+            if (isCorrect) correct++;
+            if (!isCorrect) selected.closest('.unit-option').classList.add('wrong-choice');
+          }
+        });
+        if (!checked) { score.textContent = ''; return; }
+        const unanswered = items.length - answered;
+        score.textContent = unanswered ? `${correct} correct · ${unanswered} unanswered` : `${correct} / ${items.length} correct`;
+      }
+
+      check.addEventListener('click', () => { checked = true; gradeUnit(); });
+      key.addEventListener('click', () => {
+        showing = !showing;
+        key.setAttribute('aria-pressed', String(showing));
+        key.textContent = showing ? 'Hide answers' : 'Show answers';
+        checked = true;
+        gradeUnit();
+      });
+      test.querySelectorAll('input[type="radio"]').forEach(input => input.addEventListener('change', () => { if (checked) gradeUnit(); }));
+      test.querySelector('.unit-reset').addEventListener('click', () => {
+        checked = false;
+        showing = false;
+        test.querySelectorAll('input[type="radio"]').forEach(input => { input.checked = false; });
+        test.querySelectorAll('.unit-option').forEach(option => option.classList.remove('solution', 'wrong-choice'));
+        score.textContent = '';
+        key.setAttribute('aria-pressed', 'false');
+        key.textContent = 'Show answers';
+        const response = test.querySelector('textarea');
+        if (response) response.value = '';
+      });
+    });
+  </script>
+  <script>
+    (() => {
+      function bindExtraTrueFalse(task) {
+        const rows = [...task.querySelectorAll('.tf-row')];
+        const controls = task.closest('.extra-block');
+        const checkButton = controls.querySelector('.activity-check');
+        const keyButton = controls.querySelector('[data-answer-toggle]');
+        const resetButton = controls.querySelector('.activity-reset');
+        const score = controls.querySelector('.activity-score');
+        let checked = false;
+        let showing = false;
+
+        function grade() {
+          let correct = 0;
+          let answered = 0;
+          rows.forEach(row => {
+            row.classList.remove('correct', 'incorrect');
+            const selected = row.querySelector('.tf-choice[aria-pressed="true"]');
+            row.querySelectorAll('.tf-choice').forEach(button => {
+              button.classList.remove('key-answer');
+              if (showing && button.dataset.value === row.dataset.answer) button.classList.add('key-answer');
+            });
+            if (selected) {
+              answered++;
+              const isCorrect = selected.dataset.value === row.dataset.answer;
+              if (isCorrect) correct++;
+              row.classList.add(isCorrect ? 'correct' : 'incorrect');
+            }
+          });
+          if (!checked) { score.textContent = ''; return; }
+        const remaining = rows.length - answered;
+        score.textContent = remaining ? `${correct} correct · ${remaining} unanswered` : `${correct} / ${rows.length} correct`;
+        }
+
+        rows.forEach(row => row.querySelectorAll('.tf-choice').forEach(button => {
+          button.addEventListener('click', () => {
+            row.querySelectorAll('.tf-choice').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+            if (checked) grade();
+          });
+        }));
+        checkButton.addEventListener('click', () => { checked = true; grade(); });
+        keyButton.addEventListener('click', () => {
+          showing = !showing;
+          keyButton.setAttribute('aria-pressed', String(showing));
+          keyButton.textContent = showing ? 'Hide answers' : 'Show answers';
+          grade();
+        });
+        resetButton.addEventListener('click', () => {
+          checked = false;
+          showing = false;
+          rows.forEach(row => {
+            row.classList.remove('correct', 'incorrect');
+            row.querySelectorAll('.tf-choice').forEach(button => {
+              button.setAttribute('aria-pressed', 'false');
+              button.classList.remove('key-answer');
+            });
+          });
+          keyButton.setAttribute('aria-pressed', 'false');
+          keyButton.textContent = 'Show answers';
+          score.textContent = '';
+        });
+      }
+
+      bindExtraTrueFalse(document.querySelector('#friend-profiles .extra-tf-task'));
+
+      const opinionButton = document.querySelector('#friend-profiles [data-model-toggle]');
+      opinionButton.addEventListener('click', () => {
+        const reveal = opinionButton.getAttribute('aria-pressed') !== 'true';
+        opinionButton.setAttribute('aria-pressed', String(reveal));
+        opinionButton.textContent = reveal ? 'Hide sample ideas' : 'Show sample ideas';
+        document.querySelectorAll('#friend-profiles .model-answer').forEach(answer => { answer.hidden = !reveal; });
+      });
+      document.querySelector('#friend-profiles .activity-reset').addEventListener('click', () => {
+        document.querySelectorAll('#friend-profiles .opinion-row input').forEach(input => { input.value = ''; });
+        document.querySelectorAll('#friend-profiles .opinion-row .model-answer').forEach(answer => { answer.hidden = true; });
+        opinionButton.setAttribute('aria-pressed', 'false');
+        opinionButton.textContent = 'Show sample ideas';
+      });
+
+      const messageTask = document.querySelector('#apology-message');
+      const messageRows = [...messageTask.querySelectorAll('.extra-tf-task .tf-row')];
+      const shortAnswers = [...messageTask.querySelectorAll('.short-answer')];
+      const clozeInputs = [...messageTask.querySelectorAll('.extra-cloze input')];
+      const messageScore = messageTask.querySelector('.activity-score');
+      const messageCheck = messageTask.querySelector('.activity-check');
+      const messageKey = messageTask.querySelector('[data-answer-toggle]');
+      const messageReset = messageTask.querySelector('.activity-reset');
+      const messageKeyCards = messageTask.querySelector('.message-answer-key');
+      let messageChecked = false;
+      let messageShowing = false;
+
+      function gradeMessage() {
+        let correct = 0;
+        let answered = 0;
+        messageRows.forEach(row => {
+          row.classList.remove('correct', 'incorrect');
+          const selected = row.querySelector('.tf-choice[aria-pressed="true"]');
+          row.querySelectorAll('.tf-choice').forEach(button => {
+            button.classList.remove('key-answer');
+            if (messageShowing && button.dataset.value === row.dataset.answer) button.classList.add('key-answer');
+          });
+          if (selected) {
+            answered++;
+            const isCorrect = selected.dataset.value === row.dataset.answer;
+            if (isCorrect) correct++;
+            row.classList.add(isCorrect ? 'correct' : 'incorrect');
+          }
+        });
+        shortAnswers.forEach(row => {
+          row.classList.remove('correct', 'incorrect');
+          const value = row.querySelector('input').value.trim().toLocaleLowerCase();
+          if (value) {
+            answered++;
+            const acceptable = row.dataset.answers.split('|').some(answer => value.includes(answer));
+            if (acceptable) correct++;
+            row.classList.add(acceptable ? 'correct' : 'incorrect');
+          }
+          row.querySelector('.model-answer').hidden = !messageShowing;
+        });
+        clozeInputs.forEach(input => {
+          input.classList.remove('correct', 'incorrect');
+          const value = input.value.trim().toLocaleLowerCase();
+          if (value) {
+            answered++;
+            const isCorrect = value === input.dataset.answer.toLocaleLowerCase();
+            if (isCorrect) correct++;
+            input.classList.add(isCorrect ? 'correct' : 'incorrect');
+          }
+        });
+        messageKeyCards.hidden = !messageShowing;
+        const total = messageRows.length + shortAnswers.length + clozeInputs.length;
+        if (!messageChecked) { messageScore.textContent = ''; return; }
+        const remaining = total - answered;
+        messageScore.textContent = remaining ? `${correct} correct · ${remaining} unanswered` : `${correct} / ${total} correct`;
+      }
+
+      messageRows.forEach(row => row.querySelectorAll('.tf-choice').forEach(button => button.addEventListener('click', () => {
+        row.querySelectorAll('.tf-choice').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+        if (messageChecked) gradeMessage();
+      })));
+      shortAnswers.forEach(row => row.querySelector('input').addEventListener('input', () => { if (messageChecked) gradeMessage(); }));
+      clozeInputs.forEach(input => input.addEventListener('input', () => { if (messageChecked) gradeMessage(); }));
+      messageCheck.addEventListener('click', () => { messageChecked = true; gradeMessage(); });
+      messageKey.addEventListener('click', () => {
+        messageShowing = !messageShowing;
+        messageKey.setAttribute('aria-pressed', String(messageShowing));
+        messageKey.textContent = messageShowing ? 'Hide answers' : 'Show answers';
+        gradeMessage();
+      });
+      messageReset.addEventListener('click', () => {
+        messageChecked = false;
+        messageShowing = false;
+        messageRows.forEach(row => {
+          row.classList.remove('correct', 'incorrect');
+          row.querySelectorAll('.tf-choice').forEach(button => { button.setAttribute('aria-pressed', 'false'); button.classList.remove('key-answer'); });
+        });
+        shortAnswers.forEach(row => { row.classList.remove('correct', 'incorrect'); row.querySelector('input').value = ''; row.querySelector('.model-answer').hidden = true; });
+        clozeInputs.forEach(input => { input.value = ''; input.classList.remove('correct', 'incorrect'); });
+        messageTask.querySelectorAll('.prompt-writing textarea').forEach(textarea => { textarea.value = ''; });
+        messageKeyCards.hidden = true;
+        messageScore.textContent = '';
+        messageKey.setAttribute('aria-pressed', 'false');
+        messageKey.textContent = 'Show answers';
+      });
+
+      const vocabTask = document.querySelector('#vocabulary-practice');
+      const vocabRows = [...vocabTask.querySelectorAll('.vocab-match')];
+      const sentenceRows = [...vocabTask.querySelectorAll('.extra-vocab-sentences .unit-match')];
+      const definitionLetters = [...vocabTask.querySelectorAll('.vocab-definitions .definition strong')]
+        .map(label => label.textContent.replace('.', '').trim());
+      vocabRows.forEach((row, index) => {
+        const select = row.querySelector('select');
+        const offset = (index * 5) % definitionLetters.length;
+        const choices = [...definitionLetters.slice(offset), ...definitionLetters.slice(0, offset)];
+        select.replaceChildren(new Option('Choose', ''));
+        choices.forEach(letter => select.add(new Option(letter, letter)));
+      });
+      const vocabCheck = vocabTask.querySelector('.activity-check');
+      const vocabKey = vocabTask.querySelector('[data-answer-toggle]');
+      const vocabReset = vocabTask.querySelector('.activity-reset');
+      const vocabScore = vocabTask.querySelector('.activity-score');
+      let vocabChecked = false;
+      let vocabShowing = false;
+
+      function gradeVocabulary() {
+        let correct = 0;
+        let answered = 0;
+        const rows = [...vocabRows, ...sentenceRows];
+        rows.forEach(row => {
+          row.classList.remove('correct', 'incorrect');
+          const select = row.querySelector('select');
+          const value = select.value.trim().toLocaleLowerCase();
+          let keyHint = row.querySelector('.match-key');
+          if (!keyHint) {
+            keyHint = document.createElement('span');
+            keyHint.className = 'match-key';
+            row.append(keyHint);
+          }
+          keyHint.textContent = `Answer: ${row.dataset.answer}`;
+          keyHint.hidden = !vocabShowing;
+          if (value) {
+            answered++;
+            const isCorrect = value === row.dataset.answer.toLocaleLowerCase();
+            if (isCorrect) correct++;
+            row.classList.add(isCorrect ? 'correct' : 'incorrect');
+          }
+        });
+        if (!vocabChecked) { vocabScore.textContent = ''; return; }
+        const total = rows.length;
+        const remaining = total - answered;
+        vocabScore.textContent = remaining ? `${correct} correct · ${remaining} unanswered` : `${correct} / ${total} correct`;
+      }
+
+      [...vocabRows, ...sentenceRows].forEach(row => row.querySelector('select').addEventListener('change', () => { if (vocabChecked) gradeVocabulary(); }));
+      vocabCheck.addEventListener('click', () => { vocabChecked = true; gradeVocabulary(); });
+      vocabKey.addEventListener('click', () => {
+        vocabShowing = !vocabShowing;
+        vocabKey.setAttribute('aria-pressed', String(vocabShowing));
+        vocabKey.textContent = vocabShowing ? 'Hide answers' : 'Show answers';
+        gradeVocabulary();
+      });
+      vocabReset.addEventListener('click', () => {
+        vocabChecked = false;
+        vocabShowing = false;
+        [...vocabRows, ...sentenceRows].forEach(row => {
+          row.classList.remove('correct', 'incorrect');
+          row.querySelector('select').value = '';
+          row.querySelector('.match-key')?.remove();
+        });
+        vocabScore.textContent = '';
+        vocabKey.setAttribute('aria-pressed', 'false');
+        vocabKey.textContent = 'Show answers';
+      });
+    })();
+  </script>
+</body>
+</html>
